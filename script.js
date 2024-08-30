@@ -28,7 +28,7 @@ function Gameboard() {
         console.log(boardWithCellValues);
       };
 
-    return {getBoard, addMark, printBoard}
+    return { getBoard, addMark, printBoard };
 };
 
 function Cell() {
@@ -40,23 +40,20 @@ function Cell() {
     
     const getCellValue = () => value;
 
-    return {
-        markCell,
-        getCellValue
-    };
+    return { markCell, getCellValue };
 };
 
-const gameboard = Gameboard();
+function Players(playerOne = "Player One", playerTwo = "Player Two") {
+    const players = [
+        {
+            name: playerOne,
+            token: 1
+        }, 
+        {
+            name: playerTwo,
+            token: 2
+        }
+    ];
 
 
-gameboard.addMark(0, 0, 1);
-gameboard.printBoard();
-
-gameboard.addMark(0, 2, 2);
-gameboard.printBoard();
-
-gameboard.addMark(0, 2, 1);
-gameboard.printBoard();
-
-gameboard.addMark(1, 1, 1);
-gameboard.printBoard();
+};
