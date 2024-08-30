@@ -14,7 +14,18 @@ function Gameboard() {
         console.log(board);
     };
 
-    return { printBoard }
+    const tagCell = (row, column, tagID) => {
+        const targetCell = board[row][column];
+
+        if ( targetCell !== 0) {
+            console.log("This cell is already tagged! Please choose a different cell.");
+            return;
+        };
+
+        targetCell = tagID;
+    };
+
+    return { printBoard, tagCell }
 };
 
 function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
