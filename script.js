@@ -15,7 +15,7 @@ function Gameboard() {
     const addMark = (row, column, player) => {
         const currentCell = board[row][column];
 
-        if (currentCell.getValue() !== 0) {
+        if (currentCell.getCellValue() !== 0) {
             alert("This cell is already marked! Please choose a different cell.");
             return;
         };
