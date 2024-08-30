@@ -22,12 +22,23 @@ function Cell() {
         value = player;
     };
     
-    const getCellValue = () => {
-        value;
-    };
+    const getCellValue = () => value;
 
     return {
         markCell,
         getCellValue
     };
-}
+};
+
+const gameboard = Gameboard();
+const board = gameboard.getBoard();
+
+board[0][0].markCell(1);
+console.log('Cell Value: ' + board[0][0].getCellValue());
+
+board[0][0].markCell(2);
+console.log('Cell Value: ' + board[0][0].getCellValue());
+
+board[0][0].markCell(0);
+console.log('Cell Value: ' + board[0][0].getCellValue());
+
