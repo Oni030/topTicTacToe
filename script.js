@@ -16,3 +16,16 @@ function Gameboard() {
 
     return { printBoard }
 };
+
+function Players() {
+    const players = [
+        {
+            name: "Player One",
+            tagID: 1
+        },
+        {
+            name: "Player Two",
+            tagID: 2
+        }
+    ];
+};
