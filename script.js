@@ -17,14 +17,14 @@ function Gameboard() {
     return { printBoard }
 };
 
-function Players() {
+function Players(playerOne = "Player 1", playerTwo = "Player 2") {
     const players = [
         {
-            name: "Player One",
+            name: playerOne,
             tagID: 1
         },
         {
-            name: "Player Two",
+            name: playerTwo,
             tagID: 2
         }
     ];

@@ -13,7 +13,7 @@ What needs to be created?
 - A gameboard with 3x3 cells X
 - A way to print the gameboard X
 - Two players with name and tag-id X
-- A way to input player names
+- A way to input player names X
 - A way to check for currently active player
 - A way to tag a cell
 - A way to check if cell is tagged already
