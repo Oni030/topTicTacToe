@@ -23,7 +23,12 @@ function Gameboard() {
         currentCell.markCell(player);
     };
 
-    return {getBoard, addMark}
+    const printBoard = () => {
+        const boardWithCellValues = board.map((row) => row.map((cell) => cell.getCellValue()))
+        console.log(boardWithCellValues);
+      };
+
+    return {getBoard, addMark, printBoard}
 };
 
 function Cell() {
@@ -42,14 +47,16 @@ function Cell() {
 };
 
 const gameboard = Gameboard();
-const board = gameboard.getBoard();
 
-board[0][0].markCell(1);
-console.log('Cell Value: ' + board[0][0].getCellValue());
 
-board[0][0].markCell(2);
-console.log('Cell Value: ' + board[0][0].getCellValue());
+gameboard.addMark(0, 0, 1);
+gameboard.printBoard();
 
-board[0][0].markCell(0);
-console.log('Cell Value: ' + board[0][0].getCellValue());
+gameboard.addMark(0, 2, 2);
+gameboard.printBoard();
 
+gameboard.addMark(0, 2, 1);
+gameboard.printBoard();
+
+gameboard.addMark(1, 1, 1);
+gameboard.printBoard();
