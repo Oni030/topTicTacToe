@@ -17,7 +17,7 @@ function Gameboard() {
     return { printBoard }
 };
 
-function Players(playerOne = "Player 1", playerTwo = "Player 2") {
+function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
     const players = [
         {
             name: playerOne,
@@ -28,4 +28,10 @@ function Players(playerOne = "Player 1", playerTwo = "Player 2") {
             tagID: 2
         }
     ];
+
+    const activePlayer = players[0];
+
+    const getActivePlayer = () => activePlayer;
+
+    return { getActivePlayer };
 };
