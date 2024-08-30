@@ -9,4 +9,10 @@ function Gameboard() {
             board[i].push(0);
         };
     };
+
+    const printBoard = () => {
+        console.log(board);
+    };
+
+    return { printBoard }
 };
