@@ -12,7 +12,18 @@ function Gameboard() {
 
     const getBoard = () => board;
 
-    return {getBoard}
+    const addMark = (row, column, player) => {
+        const currentCell = board[row][column];
+
+        if (currentCell.getValue() !== 0) {
+            alert("This cell is already marked! Please choose a different cell.");
+            return;
+        };
+
+        currentCell.markCell(player);
+    };
+
+    return {getBoard, addMark}
 };
 
 function Cell() {
