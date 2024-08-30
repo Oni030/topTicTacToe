@@ -10,8 +10,8 @@ Game Rules:
 - First player with 3 marked cells in a row (vertical, horizontal, diagonal) wins
 
 What needs to be created?
-- A gameboard with 3x3 cells
-- A way to print the gameboard
+- A gameboard with 3x3 cells X
+- A way to print the gameboard X
 - Two players with name and tag-id
 - A way to input player names
 - A way to check for currently active player
