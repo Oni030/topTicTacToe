@@ -11,7 +11,8 @@ function Gameboard() {
     };
 
     const printBoard = () => {
-        console.log(board);
+        const currentBoardStatus = board.map((row) => row.map((cell) => cell));
+        console.log(currentBoardStatus);
     };
 
     const tagCell = (row, column, tagID) => {
