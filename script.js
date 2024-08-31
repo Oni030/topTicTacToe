@@ -25,6 +25,27 @@ function Gameboard() {
         return columns;
     };
 
+    const getBoardDiagonals = () => {
+        const diagonals = [];
+        const reverseStart = column - 1;
+
+        for ( i=0; i<row-1 ; i++ ) {
+            diagonals[i] = [];
+
+            if ( i === 0 ) {
+                for ( j=0 ; j<column ; j++ ) {
+                    diagonals[i].push(board[j][j]);
+                };
+            } else {
+                for ( k=0 ; k<column ; k++ ) {
+                    diagonals[i].push(board[k][reverseStart - k]);
+                };
+            };
+        };
+
+        return diagonals;
+    };
+
     const printBoard = () => {
         const currentBoardStatus = board.map((row) => row.map((cell) => cell));
         console.log(currentBoardStatus);
@@ -41,7 +62,7 @@ function Gameboard() {
         board[row].splice(column, 1, tagID)
     };
 
-    return { getBoard, getBoardColumns, printBoard, tagCell }
+    return { getBoard, getBoardColumns, getBoardDiagonals, printBoard, tagCell }
 };
 
 function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
