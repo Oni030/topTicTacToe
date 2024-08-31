@@ -52,6 +52,19 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
     return { getActivePlayer , switchActivePlayer };
 };
 
+function Game() {
+    const board = Gameboard();
+    const players = Players();
+
+    const startNewRound = () => {
+        board.printBoard();
+        console.log(`${players.getActivePlayer().name}'s turn.`);
+    };
+
+};  
+
+
+
 // const gameboard = Gameboard();
 // gameboard.printBoard();
 // gameboard.tagCell(2, 1, 1);
