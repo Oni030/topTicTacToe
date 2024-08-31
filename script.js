@@ -61,8 +61,19 @@ function Game() {
         console.log(`${players.getActivePlayer().name}'s turn.`);
     };
 
-};  
+    const move = (row, column) => {
+        console.log(`${players.getActivePlayer().name} has tagged cell in row: ${row + 1} column: ${column + 1}...`);
+        board.tagCell(row, column, players.getActivePlayer().tagID);
 
+        players.switchActivePlayer();
+        displayNewRound();
+    };
+
+    displayNewRound();
+
+    return { move }
+
+};  
 
 
 // const gameboard = Gameboard();
