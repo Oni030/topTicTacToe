@@ -10,6 +10,8 @@ function Gameboard() {
         };
     };
 
+    const getBoard = () => board;
+
     const printBoard = () => {
         const currentBoardStatus = board.map((row) => row.map((cell) => cell));
         console.log(currentBoardStatus);
@@ -26,7 +28,7 @@ function Gameboard() {
         board[row].splice(column, 1, tagID)
     };
 
-    return { printBoard, tagCell }
+    return { getBoard, printBoard, tagCell }
 };
 
 function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
