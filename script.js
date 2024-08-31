@@ -58,7 +58,7 @@ function Gameboard() {
             console.log("This cell is already tagged! Please choose a different cell.");
             return;
         };
-        // Check Array methods
+        
         board[row].splice(column, 1, tagID)
     };
 
@@ -91,7 +91,7 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
 function Game() {
     const gameboard = Gameboard();
     const players = Players();
-    const rows = gameboard.getBoard();
+    
 
     const startNewRound = () => {
         gameboard.printBoard();
@@ -101,10 +101,6 @@ function Game() {
     const move = (row, column) => {
         console.log(`${players.getActivePlayer().name} has tagged cell in row: ${row + 1} column: ${column + 1}...`);
         gameboard.tagCell(row, column, players.getActivePlayer().tagID);
-
-        const columns = rows.map(row => row.map(cell => {
-
-        }))
 
         players.switchActivePlayer();
         startNewRound();
