@@ -16,6 +16,6 @@ What needs to be created?
 - A way to input player names X
 - A way to check for currently active player X
 - A way to tag a cell X
-- A way to check if cell is tagged already
+- A way to check if cell is tagged already X
 - A way to switchTurns
 - A way to check for the winner
