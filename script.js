@@ -15,14 +15,14 @@ function Gameboard() {
     };
 
     const tagCell = (row, column, tagID) => {
-        const targetCell = board[row][column];
+        let targetCell = board[row][column];
 
         if ( targetCell !== 0) {
             console.log("This cell is already tagged! Please choose a different cell.");
             return;
         };
-
-        targetCell = tagID;
+        // Check Array methods
+        board[row].splice(column, 1, tagID)
     };
 
     return { printBoard, tagCell }
@@ -46,3 +46,14 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
 
     return { getActivePlayer };
 };
+
+// const gameboard = Gameboard();
+// gameboard.printBoard();
+// gameboard.tagCell(2, 1, 1);
+// gameboard.printBoard();
+
+// gameboard.tagCell(1, 1, 2);
+// gameboard.tagCell(0, 1, 1);
+// gameboard.tagCell(2, 0, 2);
+// gameboard.tagCell(0, 0, 1);
+// gameboard.tagCell(1, 1, 2);
