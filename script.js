@@ -55,17 +55,17 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
 };
 
 function Game() {
-    const board = Gameboard();
+    const gameboard = Gameboard();
     const players = Players();
 
     const startNewRound = () => {
-        board.printBoard();
+        gameboard.printBoard();
         console.log(`${players.getActivePlayer().name}'s turn.`);
     };
 
     const move = (row, column) => {
         console.log(`${players.getActivePlayer().name} has tagged cell in row: ${row + 1} column: ${column + 1}...`);
-        board.tagCell(row, column, players.getActivePlayer().tagID);
+        gameboard.tagCell(row, column, players.getActivePlayer().tagID);
 
         players.switchActivePlayer();
         startNewRound();
