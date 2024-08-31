@@ -12,6 +12,19 @@ function Gameboard() {
 
     const getBoard = () => board;
 
+    const getBoardColumns = () => {
+        const columns = [];
+
+        for ( i=0; i<row ; i++ ) {
+            columns[i] = [];
+            for ( j=0 ; j<column ; j++) {
+                columns[i].push(board[j][i]);
+            };
+        };
+        
+        return columns;
+    };
+
     const printBoard = () => {
         const currentBoardStatus = board.map((row) => row.map((cell) => cell));
         console.log(currentBoardStatus);
@@ -28,7 +41,7 @@ function Gameboard() {
         board[row].splice(column, 1, tagID)
     };
 
-    return { getBoard, printBoard, tagCell }
+    return { getBoard, getBoardColumns, printBoard, tagCell }
 };
 
 function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
@@ -57,6 +70,7 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
 function Game() {
     const gameboard = Gameboard();
     const players = Players();
+    const rows = gameboard.getBoard();
 
     const startNewRound = () => {
         gameboard.printBoard();
@@ -66,6 +80,10 @@ function Game() {
     const move = (row, column) => {
         console.log(`${players.getActivePlayer().name} has tagged cell in row: ${row + 1} column: ${column + 1}...`);
         gameboard.tagCell(row, column, players.getActivePlayer().tagID);
+
+        const columns = rows.map(row => row.map(cell => {
+
+        }))
 
         players.switchActivePlayer();
         startNewRound();
