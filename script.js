@@ -66,10 +66,10 @@ function Game() {
         board.tagCell(row, column, players.getActivePlayer().tagID);
 
         players.switchActivePlayer();
-        displayNewRound();
+        startNewRound();
     };
 
-    displayNewRound();
+    startNewRound();
 
     return { move }
 
