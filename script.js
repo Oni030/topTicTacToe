@@ -41,11 +41,15 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
         }
     ];
 
-    const activePlayer = players[0];
+    let activePlayer = players[0];
 
     const getActivePlayer = () => activePlayer;
 
-    return { getActivePlayer };
+    const switchActivePlayer = () => {
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    };
+
+    return { getActivePlayer , switchActivePlayer };
 };
 
 // const gameboard = Gameboard();
@@ -58,3 +62,9 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
 // gameboard.tagCell(2, 0, 2);
 // gameboard.tagCell(0, 0, 1);
 // gameboard.tagCell(1, 1, 2);
+
+// const player = Players();
+// console.log(player.getActivePlayer());
+
+// player.switchActivePlayer();
+// console.log(player.getActivePlayer());
