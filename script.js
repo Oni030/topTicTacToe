@@ -58,6 +58,8 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
         }
     ];
 
+    const getPlayers = () => players;
+
     let activePlayer = players[0];
 
     const getActivePlayer = () => activePlayer;
@@ -66,18 +68,37 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
     };
 
-    return { getActivePlayer , switchActivePlayer };
+    return { getPlayers, getActivePlayer , switchActivePlayer };
 };
 
 function Game() {
     const gameboard = Gameboard();
     const players = Players();
+    const playerList = players.getPlayers();
     const rows = gameboard.getBoard();
     const columns = gameboard.getBoardColumns();
     const diagonals = gameboard.getBoardDiagonals();
 
     const makeCheckBoard = () => {
         return [...rows, ...columns, ...diagonals];
+    };
+
+    const checkWin = () => {
+        let checkBoard = makeCheckBoard();
+
+        if (rows.flat().every(cell => cell !== 0)) {
+            console.log("It's a draw!");
+            return true;
+        };
+
+        for (const combo of checkBoard) {
+            const tagID = combo[0];
+            if (combo[0] !== 0 && combo[0] === combo[1] && combo[0] === combo[2]) {
+                const winningPlayer = playerList[tagID - 1];
+                console.log(`${winningPlayer.name} wins!`);
+                return true
+            };
+        };
     };
 
     const startNewRound = () => {
@@ -88,6 +109,8 @@ function Game() {
     const move = (row, column) => {
         console.log(`${players.getActivePlayer().name} has tagged cell in row: ${row + 1} column: ${column + 1}...`);
         gameboard.tagCell(row, column, players.getActivePlayer().tagID);
+
+        checkWin();
 
         players.switchActivePlayer();
         startNewRound();
