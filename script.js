@@ -57,10 +57,9 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
             tagID: 2
         }
     ];
+    let activePlayer = players[0];
 
     const getPlayers = () => players;
-
-    let activePlayer = players[0];
 
     const getActivePlayer = () => activePlayer;
 
@@ -76,7 +75,7 @@ function Game() {
     const players = Players();
     const playerList = players.getPlayers();
     const rows = gameboard.getBoard();
-    const checkBoard = getCheckBoard();
+    const checkBoard = gameboard.getCheckBoard();
 
     const checkWin = () => {
 
@@ -117,3 +116,7 @@ function Game() {
     return { move }
 
 };
+
+const gameboard = Gameboard();
+const players = Players();
+const game = Game();
