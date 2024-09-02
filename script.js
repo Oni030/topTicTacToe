@@ -91,7 +91,13 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
 function Game() {
     const gameboard = Gameboard();
     const players = Players();
-    
+    const rows = gameboard.getBoard();
+    const columns = gameboard.getBoardColumns();
+    const diagonals = gameboard.getBoardDiagonals();
+
+    const makeCheckBoard = () => {
+        return [...rows, ...columns, ...diagonals];
+    };
 
     const startNewRound = () => {
         gameboard.printBoard();
@@ -110,22 +116,4 @@ function Game() {
 
     return { move }
 
-};  
-
-
-// const gameboard = Gameboard();
-// gameboard.printBoard();
-// gameboard.tagCell(2, 1, 1);
-// gameboard.printBoard();
-
-// gameboard.tagCell(1, 1, 2);
-// gameboard.tagCell(0, 1, 1);
-// gameboard.tagCell(2, 0, 2);
-// gameboard.tagCell(0, 0, 1);
-// gameboard.tagCell(1, 1, 2);
-
-// const player = Players();
-// console.log(player.getActivePlayer());
-
-// player.switchActivePlayer();
-// console.log(player.getActivePlayer());
+};
