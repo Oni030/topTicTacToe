@@ -13,37 +13,18 @@ function Gameboard() {
     const getBoard = () => board;
 
     const getBoardColumns = () => {
-        const columns = [];
-
-        for ( i=0; i<row ; i++ ) {
-            columns[i] = [];
-            for ( j=0 ; j<column ; j++) {
-                columns[i].push(board[j][i]);
-            };
-        };
-        
-        return columns;
+        return [
+            [board[0][0], board[1][0], board[2][0]],
+            [board[0][1], board[1][1], board[2][1]],
+            [board[0][2], board[1][2], board[2][2]]
+        ]
     };
 
     const getBoardDiagonals = () => {
-        const diagonals = [];
-        const reverseStart = column - 1;
-
-        for ( i=0; i<row-1 ; i++ ) {
-            diagonals[i] = [];
-
-            if ( i === 0 ) {
-                for ( j=0 ; j<column ; j++ ) {
-                    diagonals[i].push(board[j][j]);
-                };
-            } else {
-                for ( k=0 ; k<column ; k++ ) {
-                    diagonals[i].push(board[k][reverseStart - k]);
-                };
-            };
-        };
-
-        return diagonals;
+        return [
+            [board[0][0], board[1][1], board[2][2]],
+            [board[0][2], board[1][1], board[2][0]] 
+        ];
     };
 
     const printBoard = () => {
