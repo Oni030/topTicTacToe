@@ -12,19 +12,19 @@ function Gameboard() {
 
     const getBoard = () => board;
 
-    const getBoardColumns = () => {
-        return [
+    const getCheckBoard = () => {
+        const rows = board;
+        const columns = [
             [board[0][0], board[1][0], board[2][0]],
             [board[0][1], board[1][1], board[2][1]],
             [board[0][2], board[1][2], board[2][2]]
-        ]
-    };
-
-    const getBoardDiagonals = () => {
-        return [
+        ];
+        const diagonals = [
             [board[0][0], board[1][1], board[2][2]],
             [board[0][2], board[1][1], board[2][0]] 
         ];
+
+        return [...rows, ...columns, ...diagonals];
     };
 
     const printBoard = () => {
@@ -43,7 +43,7 @@ function Gameboard() {
         board[row].splice(column, 1, tagID)
     };
 
-    return { getBoard, getBoardColumns, getBoardDiagonals, printBoard, tagCell }
+    return { getBoard, getCheckBoard, printBoard, tagCell }
 };
 
 function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
@@ -76,15 +76,9 @@ function Game() {
     const players = Players();
     const playerList = players.getPlayers();
     const rows = gameboard.getBoard();
-    const columns = gameboard.getBoardColumns();
-    const diagonals = gameboard.getBoardDiagonals();
-
-    const makeCheckBoard = () => {
-        return [...rows, ...columns, ...diagonals];
-    };
+    const checkBoard = getCheckBoard();
 
     const checkWin = () => {
-        let checkBoard = makeCheckBoard();
 
         if (rows.flat().every(cell => cell !== 0)) {
             console.log("It's a draw!");
