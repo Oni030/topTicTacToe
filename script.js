@@ -107,7 +107,9 @@ function Game() {
     };
 
     const move = (row, column) => {
-        console.log(`${players.getActivePlayer().name} has tagged cell in row: ${row + 1} column: ${column + 1}...`);
+        const alph = ['A', 'B', 'C'];
+
+        console.log(`${players.getActivePlayer().name} has tagged cell ${alph[row]}${column + 1}...`);
         gameboard.tagCell(row, column, players.getActivePlayer().tagID);
 
         checkWin();
