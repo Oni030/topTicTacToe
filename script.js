@@ -75,10 +75,11 @@ function Game() {
     const players = Players();
     const playerList = players.getPlayers();
     const rows = gameboard.getBoard();
-    const checkBoard = gameboard.getCheckBoard();
 
     const checkWin = () => {
 
+        const checkBoard = gameboard.getCheckBoard();
+        
         if (rows.flat().every(cell => cell !== 0)) {
             console.log("It's a draw!");
             return true;
