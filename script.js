@@ -92,6 +92,9 @@ function Game() {
                 return true
             };
         };
+
+        players.switchActivePlayer();
+        startNewRound();
     };
 
     const startNewRound = () => {
@@ -107,8 +110,6 @@ function Game() {
 
         checkWin();
 
-        players.switchActivePlayer();
-        startNewRound();
     };
 
     startNewRound();
