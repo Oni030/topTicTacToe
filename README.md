@@ -19,4 +19,6 @@ What needs to be created?
 - A way to check if cell is tagged already X
 - A way to switchTurns X
 - A way to play a round X
-- A way to check for the winner
+- A way to check for the winner X
+- A way that let's a player pick again, once they chose a cell that's already tagged X
+- A way to start the game X

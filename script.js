@@ -127,13 +127,12 @@ function Game() {
 
     };
 
-    startNewRound();
-
-    return { move }
+    return { move , startNewRound }
 
 };
 
+function startGame() {
+    game.startNewRound();
+};
 
-const gameboard = Gameboard();
-const players = Players();
 const game = Game();
