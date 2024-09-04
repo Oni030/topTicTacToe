@@ -66,12 +66,13 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
 function Game() {
     const gameboard = Gameboard();
     const players = Players();
-    const playerList = players.getPlayers();
-    const rows = gameboard.getBoard();
+    
 
     const checkWin = () => {
 
+        const rows = gameboard.getBoard();
         const checkBoard = gameboard.getCheckBoard();
+        const playerList = players.getPlayers();
 
         if (rows.flat().every(cell => cell !== 0)) {
             console.log("It's a draw!");
