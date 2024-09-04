@@ -33,13 +33,6 @@ function Gameboard() {
     };
 
     const tagCell = (row, column, tagID) => {
-        let targetCell = board[row][column];
-
-        if ( targetCell !== 0) {
-            console.log("This cell is already tagged! Please choose a different cell.");
-            return;
-        };
-        
         board[row].splice(column, 1, tagID)
     };
 
@@ -79,7 +72,7 @@ function Game() {
     const checkWin = () => {
 
         const checkBoard = gameboard.getCheckBoard();
-        
+
         if (rows.flat().every(cell => cell !== 0)) {
             console.log("It's a draw!");
             return true;
@@ -105,8 +98,17 @@ function Game() {
 
     const move = (row, column) => {
         const alph = ['A', 'B', 'C'];
+        const board = gameboard.getBoard();
+        let targetCell = board[row][column];
 
         console.log(`${players.getActivePlayer().name} has tagged cell ${alph[row]}${column + 1}...`);
+
+        if ( targetCell !== 0) {
+            console.log("This cell has already been tagged! Please choose a different cell.");
+            startNewRound();
+            return;
+        };
+
         gameboard.tagCell(row, column, players.getActivePlayer().tagID);
 
         checkWin();
