@@ -22,3 +22,4 @@ What needs to be created?
 - A way to check for the winner X
 - A way that let's a player pick again, once they chose a cell that's already tagged X
 - A way to start the game X
+- A way to reset the game X

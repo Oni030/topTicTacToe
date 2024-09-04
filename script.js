@@ -3,12 +3,16 @@ function Gameboard() {
     const board = [];
 
     // Creates the gameboard
-    for ( let i=0; i<3 ; i++ ) {
-        board[i] = [];
-        for ( let j=0 ; j<3 ; j++) {
-            board[i].push(0);
+    const resetBoard = () => {
+        for ( let i=0; i<3 ; i++ ) {
+            board[i] = [];
+            for ( let j=0 ; j<3 ; j++) {
+                board[i].push(0);
+            };
         };
     };
+
+    resetBoard();
 
     // Method to extract board from gameboard
     const getBoard = () => board;
@@ -40,7 +44,7 @@ function Gameboard() {
         board[row].splice(column, 1, tagID)
     };
 
-    return { getBoard, getCheckBoard, printBoard, tagCell }
+    return { resetBoard, getBoard, getCheckBoard, printBoard, tagCell }
 };
 
 // PLAYERS FUNCTION FACTORY
@@ -72,9 +76,7 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
 };
 
 
-function Game() {
-    const gameboard = Gameboard();
-    const players = Players();
+function Game(gameboard, players) {
     
     // Method to check for draw or win.
     const checkWin = () => {
@@ -131,8 +133,11 @@ function Game() {
 
 };
 
-function startGame() {
+function startNewGame() {
+    gameboard.resetBoard();
     game.startNewRound();
 };
 
-const game = Game();
+const gameboard = Gameboard();
+const players = Players();
+const game = Game(gameboard, players);
