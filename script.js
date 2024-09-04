@@ -1,6 +1,8 @@
+// GAMEBOARD FUNCTION FACTORY
 function Gameboard() {
     const board = [];
 
+    // Creates the gameboard
     for ( let i=0; i<3 ; i++ ) {
         board[i] = [];
         for ( let j=0 ; j<3 ; j++) {
@@ -8,8 +10,10 @@ function Gameboard() {
         };
     };
 
+    // Method to extract board from gameboard
     const getBoard = () => board;
 
+    // Method to generate and extract a board with all win-possibilities 
     const getCheckBoard = () => {
         const rows = board;
         const columns = [
@@ -25,11 +29,13 @@ function Gameboard() {
         return [...rows, ...columns, ...diagonals];
     };
 
+    // Method to print board on the console
     const printBoard = () => {
         const currentBoardStatus = board.map((row) => row.map((cell) => cell));
         console.log(currentBoardStatus);
     };
 
+    // Method to tag a cell within board
     const tagCell = (row, column, tagID) => {
         board[row].splice(column, 1, tagID)
     };
@@ -37,6 +43,7 @@ function Gameboard() {
     return { getBoard, getCheckBoard, printBoard, tagCell }
 };
 
+// PLAYERS FUNCTION FACTORY
 function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
     const players = [
         {
@@ -50,10 +57,13 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
     ];
     let activePlayer = players[0];
 
+    // Method to extract players array 
     const getPlayers = () => players;
 
+    // Method to extract currently active player
     const getActivePlayer = () => activePlayer;
 
+    // Method to switch currently active player
     const switchActivePlayer = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
     };
@@ -61,11 +71,12 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
     return { getPlayers, getActivePlayer , switchActivePlayer };
 };
 
+
 function Game() {
     const gameboard = Gameboard();
     const players = Players();
     
-
+    // Method to check for draw or win.
     const checkWin = () => {
 
         const rows = gameboard.getBoard();
@@ -90,11 +101,13 @@ function Game() {
         startNewRound();
     };
 
+    // Method to print current gameboard to console and signal player turn
     const startNewRound = () => {
         gameboard.printBoard();
         console.log(`${players.getActivePlayer().name}'s turn.`);
     };
 
+    //  Method to call tagCell if the cell is not tagged already. Calls checkWin().
     const move = (row, column) => {
         const alph = ['A', 'B', 'C'];
         const board = gameboard.getBoard();
@@ -119,6 +132,7 @@ function Game() {
     return { move }
 
 };
+
 
 const gameboard = Gameboard();
 const players = Players();
