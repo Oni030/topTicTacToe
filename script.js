@@ -75,7 +75,7 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
     return { getPlayers, getActivePlayer , switchActivePlayer };
 };
 
-
+// GAME FUNCTION FACTORY
 function Game(gameboard, players) {
     
     // Method to check for draw or win.
