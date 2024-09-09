@@ -52,7 +52,13 @@ function Gameboard() {
 /****************************/
 /* PLAYERS FUNCTION FACTORY */
 /****************************/
-function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
+function Players( playerOne, playerTwo ) {
+    if (playerOne === null) {
+        playerOne = "Player 1";
+    };
+    if (playerTwo === null) {
+        playerTwo = "Player 2"
+    }
     const playersArr = [
         {
             name: playerOne,
@@ -226,9 +232,9 @@ function inputPlayerNames() {
 /* GLOBAL VARIABLES */
 /********************/
 const gameboard = Gameboard();
-let players = Players();
 const dom = DOM(gameboard);
-let game = Game(gameboard, players, dom);
+let players = '';
+let game = '';
 const boardContainer = document.querySelector('.game-board')
 
 
