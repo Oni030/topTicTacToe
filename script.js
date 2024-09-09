@@ -117,7 +117,7 @@ function DOM(gameboard) {
             for ( let j=0 ; j<3 ; j++ ) {
                 const tCell = document.createElement('td');
                 const xo = document.createElement('img');
-                tCell.classList.add(`cell${i}${j}`);
+                tCell.classList.add(`${i}${j}`);
                 xo.classList.add(`cellImg${i}${j}`)
                 tCell.appendChild(xo);
                 tRow.appendChild(tCell);
@@ -203,3 +203,14 @@ const gameboard = Gameboard();
 const players = Players();
 const dom = DOM(gameboard);
 const game = Game(gameboard, players, dom);
+
+const boardContainer = document.querySelector('.game-board')
+
+boardContainer.addEventListener('click', (event) => {
+    let target = event.target;
+    let targetID = target.classList[0];
+    let targetRow = targetID.charAt(0);
+    let targetColumn = targetID.charAt(1);
+
+    game.move(targetRow, targetColumn);
+})
