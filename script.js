@@ -103,8 +103,24 @@ function DOM(gameboard) {
                 if ( board[i][j] === 2 ) {
                     xo.setAttribute('src', 'icons/circle.svg');
                 };
-            }
-        }
+            };
+        };
+    };
+
+    const resetCells = () => {
+        for ( let i=0 ; i<3 ; i++ ) {
+            for ( let j=0 ; j<3 ; j++ ) {
+                const xo = document.querySelector(`.cImg${i}${j}`);
+                
+                if ( board[i][j] === 1 ) {
+                    xo.setAttribute('src', '');
+                }; 
+   
+                if ( board[i][j] === 2 ) {
+                    xo.setAttribute('src', '');
+                };
+            };
+        };
     }
 
     const displayBoard = () => {
@@ -129,7 +145,7 @@ function DOM(gameboard) {
 
     };
 
-    return { displayBoard , fillCells }
+    return { displayBoard , fillCells , resetCells }
     
 };
 
@@ -195,17 +211,21 @@ function Game(gameboard, players, dom) {
 };
 
 function startNewGame() {
+    dom.resetCells();
     gameboard.resetBoard();
-    dom.displayBoard();
     game.startNewRound();
 };
 
 const gameboard = Gameboard();
-const players = Players();
+const players = Player();
 const dom = DOM(gameboard);
 const game = Game(gameboard, players, dom);
 
 const boardContainer = document.querySelector('.game-board')
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    dom.displayBoard();
+});
 
 boardContainer.addEventListener('click', (event) => {
     let target = event.target;
@@ -214,4 +234,4 @@ boardContainer.addEventListener('click', (event) => {
     let targetColumn = targetID.charAt(5);
 
     game.move(targetRow, targetColumn);
-})
+});
