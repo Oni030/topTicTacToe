@@ -1,4 +1,6 @@
-// GAMEBOARD FUNCTION FACTORY
+/******************************/
+/* GAMEBOARD FUNCTION FACTORY */
+/******************************/
 function Gameboard() {
     const board = [];
 
@@ -47,7 +49,9 @@ function Gameboard() {
     return { resetBoard, getBoard, getCheckBoard, printBoard, tagCell }
 };
 
-// PLAYERS FUNCTION FACTORY
+/****************************/
+/* PLAYERS FUNCTION FACTORY */
+/****************************/
 function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
     const players = [
         {
@@ -75,8 +79,35 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
     return { getPlayers, getActivePlayer , switchActivePlayer };
 };
 
-// GAME FUNCTION FACTORY
-function Game(gameboard, players) {
+
+/*************************/
+/* DOM FUNCTION FACTORY */
+/*************************/
+function DOM(gameboard) {
+    const tContainer = document.querySelector('.game-board');
+    const gridTable = document.createElement('table');
+    tContainer.appendChild(gridTable);
+    const board = gameboard.getBoard();
+
+    const displayBoard = () => {
+        for ( let row of board ) {
+        const tRow = document.createElement('tr');
+        gridTable.appendChild(tRow);
+            for ( let cell of row ) {
+                const tCell = document.createElement('td');
+                tRow.appendChild(tCell);
+            };
+        };
+    };
+
+    return { displayBoard }
+    
+};
+
+/*************************/
+/* GAME FUNCTION FACTORY */
+/*************************/
+function Game(gameboard, players, dom) {
     
     // Method to check for draw or win.
     const checkWin = () => {
@@ -135,9 +166,11 @@ function Game(gameboard, players) {
 
 function startNewGame() {
     gameboard.resetBoard();
+    dom.displayBoard();
     game.startNewRound();
 };
 
 const gameboard = Gameboard();
 const players = Players();
-const game = Game(gameboard, players);
+const dom = DOM(gameboard);
+const game = Game(gameboard, players, dom);
