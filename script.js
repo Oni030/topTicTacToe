@@ -86,18 +86,26 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
 function DOM(gameboard) {
     const tContainer = document.querySelector('.game-board');
     const gridTable = document.createElement('table');
-    tContainer.appendChild(gridTable);
     const board = gameboard.getBoard();
 
+    gridTable.classList.add('game-grid');
+    tContainer.appendChild(gridTable);
+
     const displayBoard = () => {
-        for ( let row of board ) {
+
+        for ( let i=0 ; i<3 ; i++ ) {
         const tRow = document.createElement('tr');
+        tRow.classList.add(`row${i}`);
         gridTable.appendChild(tRow);
-            for ( let cell of row ) {
+
+            for ( let j=0 ; j<3 ; j++ ) {
                 const tCell = document.createElement('td');
+                tCell.classList.add(`cell${i}${j}`);
                 tRow.appendChild(tCell);
             };
+
         };
+
     };
 
     return { displayBoard }
