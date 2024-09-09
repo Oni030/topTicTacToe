@@ -124,7 +124,6 @@ function DOM(gameboard) {
     }
 
     const displayBoard = () => {
-
         for ( let i=0 ; i<3 ; i++ ) {
         const tRow = document.createElement('tr');
         tRow.classList.add(`row${i}`);
@@ -138,15 +137,12 @@ function DOM(gameboard) {
                 tCell.appendChild(xo);
                 tRow.appendChild(tCell);
             };
-
         };
 
         fillCells();
-
     };
 
     return { displayBoard , fillCells , resetCells }
-    
 };
 
 /*************************/
@@ -156,7 +152,6 @@ function Game(gameboard, players, dom) {
     
     // Method to check for draw or win.
     const checkWin = () => {
-
         const rows = gameboard.getBoard();
         const checkBoard = gameboard.getCheckBoard();
         const playerList = players.getPlayers();
@@ -190,32 +185,35 @@ function Game(gameboard, players, dom) {
         const alph = ['A', 'B', 'C'];
         const board = gameboard.getBoard();
         let targetCell = board[row][column];
-
         if ( targetCell !== 0) {
             console.log("This cell has already been tagged! Please choose a different cell.");
             alert("This cell has already been tagged! Please choose a different cell.");
             startNewRound();
             return;
         };
-
         gameboard.tagCell(row, column, players.getActivePlayer().tagID);
         dom.fillCells();
         console.log(`${players.getActivePlayer().name} has tagged cell ${alph[row]}${column + 1}...`);
-
         checkWin();
-
     };
 
     return { move , startNewRound }
-
 };
 
+
+/***********************/
+/* START GAME FUNCTION */
+/***********************/
 function startNewGame() {
     dom.resetCells();
     gameboard.resetBoard();
     game.startNewRound();
 };
 
+
+/*******************************/
+/* INPUT PLAYER NAMES FUNCTION */
+/*******************************/
 function inputPlayerNames() {
     const playerOneInput = window.prompt('Choose a name for Player 1!', 'Player 1');
     const playerTwoInput = window.prompt('Choose a name for Player 2!', 'Player 2');
@@ -223,13 +221,20 @@ function inputPlayerNames() {
     game = Game(gameboard, players, dom);
 };
 
+
+/********************/
+/* GLOBAL VARIABLES */
+/********************/
 const gameboard = Gameboard();
 let players = Players();
 const dom = DOM(gameboard);
 let game = Game(gameboard, players, dom);
-
 const boardContainer = document.querySelector('.game-board')
 
+
+/******************/
+/* EVENTLISTENERS */
+/******************/
 document.addEventListener('DOMContentLoaded', (event) => {
     dom.displayBoard();
     inputPlayerNames();
