@@ -53,7 +53,7 @@ function Gameboard() {
 /* PLAYERS FUNCTION FACTORY */
 /****************************/
 function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
-    const players = [
+    const playersArr = [
         {
             name: playerOne,
             tagID: 1
@@ -63,17 +63,17 @@ function Players( playerOne = "Player 1", playerTwo = "Player 2" ) {
             tagID: 2
         }
     ];
-    let activePlayer = players[0];
+    let activePlayer = playersArr[0];
 
     // Method to extract players array 
-    const getPlayers = () => players;
+    const getPlayers = () => playersArr;
 
     // Method to extract currently active player
     const getActivePlayer = () => activePlayer;
 
     // Method to switch currently active player
     const switchActivePlayer = () => {
-        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+        activePlayer = activePlayer === playersArr[0] ? playersArr[1] : playersArr[0];
     };
 
     return { getPlayers, getActivePlayer , switchActivePlayer };
@@ -216,15 +216,23 @@ function startNewGame() {
     game.startNewRound();
 };
 
+function inputPlayerNames() {
+    const playerOneInput = window.prompt('Choose a name for Player 1!', 'Player 1');
+    const playerTwoInput = window.prompt('Choose a name for Player 2!', 'Player 2');
+    players = Players(playerOneInput, playerTwoInput);
+    game = Game(gameboard, players, dom);
+};
+
 const gameboard = Gameboard();
-const players = Player();
+let players = Players();
 const dom = DOM(gameboard);
-const game = Game(gameboard, players, dom);
+let game = Game(gameboard, players, dom);
 
 const boardContainer = document.querySelector('.game-board')
 
 document.addEventListener('DOMContentLoaded', (event) => {
     dom.displayBoard();
+    inputPlayerNames();
 });
 
 boardContainer.addEventListener('click', (event) => {
