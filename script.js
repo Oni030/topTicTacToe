@@ -54,11 +54,13 @@ function Gameboard() {
 /****************************/
 function Players( playerOne, playerTwo ) {
     if (playerOne === null) {
-        playerOne = "Player 1";
+        playerOne = "";
     };
     if (playerTwo === null) {
-        playerTwo = "Player 2"
-    }
+        playerTwo = ""
+    };
+    const playerOneDisplay = document.querySelector('.one');
+    const playerTwoDisplay = document.querySelector('.two');
     const playersArr = [
         {
             name: playerOne,
@@ -70,6 +72,9 @@ function Players( playerOne, playerTwo ) {
         }
     ];
     let activePlayer = playersArr[0];
+
+    playerOneDisplay.textContent = playerOne;
+    playerTwoDisplay.textContent = playerTwo;
 
     // Method to extract players array 
     const getPlayers = () => playersArr;
@@ -221,8 +226,8 @@ function startNewGame() {
 /* INPUT PLAYER NAMES FUNCTION */
 /*******************************/
 function inputPlayerNames() {
-    const playerOneInput = window.prompt('Choose a name for Player 1!', 'Player 1');
-    const playerTwoInput = window.prompt('Choose a name for Player 2!', 'Player 2');
+    const playerOneInput = window.prompt('Choose a name for Player 1!');
+    const playerTwoInput = window.prompt('Choose a name for Player 2!');
     players = Players(playerOneInput, playerTwoInput);
     game = Game(gameboard, players, dom);
 };
