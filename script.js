@@ -91,6 +91,22 @@ function DOM(gameboard) {
     gridTable.classList.add('game-grid');
     tContainer.appendChild(gridTable);
 
+    const fillCells = () => {
+        for ( let i=0 ; i<3 ; i++ ) {
+            for ( let j=0 ; j<3 ; j++ ) {
+                const xo = document.querySelector(`.cellImg${i}${j}`);
+                
+                if ( board[i][j] === 1 ) {
+                    xo.setAttribute('src', 'icons/x.svg');
+                }; 
+   
+                if ( board[i][j] === 2 ) {
+                    xo.setAttribute('src', 'icons/circle.svg');
+                };
+            }
+        }
+    }
+
     const displayBoard = () => {
 
         for ( let i=0 ; i<3 ; i++ ) {
@@ -100,15 +116,20 @@ function DOM(gameboard) {
 
             for ( let j=0 ; j<3 ; j++ ) {
                 const tCell = document.createElement('td');
+                const xo = document.createElement('img');
                 tCell.classList.add(`cell${i}${j}`);
+                xo.classList.add(`cellImg${i}${j}`)
+                tCell.appendChild(xo);
                 tRow.appendChild(tCell);
             };
 
         };
 
+        fillCells();
+
     };
 
-    return { displayBoard }
+    return { displayBoard , fillCells }
     
 };
 
@@ -154,8 +175,6 @@ function Game(gameboard, players, dom) {
         const board = gameboard.getBoard();
         let targetCell = board[row][column];
 
-        console.log(`${players.getActivePlayer().name} has tagged cell ${alph[row]}${column + 1}...`);
-
         if ( targetCell !== 0) {
             console.log("This cell has already been tagged! Please choose a different cell.");
             startNewRound();
@@ -163,6 +182,8 @@ function Game(gameboard, players, dom) {
         };
 
         gameboard.tagCell(row, column, players.getActivePlayer().tagID);
+        dom.fillCells();
+        console.log(`${players.getActivePlayer().name} has tagged cell ${alph[row]}${column + 1}...`);
 
         checkWin();
 
