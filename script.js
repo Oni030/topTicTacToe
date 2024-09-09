@@ -94,7 +94,7 @@ function DOM(gameboard) {
     const fillCells = () => {
         for ( let i=0 ; i<3 ; i++ ) {
             for ( let j=0 ; j<3 ; j++ ) {
-                const xo = document.querySelector(`.cellImg${i}${j}`);
+                const xo = document.querySelector(`.cImg${i}${j}`);
                 
                 if ( board[i][j] === 1 ) {
                     xo.setAttribute('src', 'icons/x.svg');
@@ -117,8 +117,8 @@ function DOM(gameboard) {
             for ( let j=0 ; j<3 ; j++ ) {
                 const tCell = document.createElement('td');
                 const xo = document.createElement('img');
-                tCell.classList.add(`${i}${j}`);
-                xo.classList.add(`cellImg${i}${j}`)
+                tCell.classList.add(`cell${i}${j}`);
+                xo.classList.add(`cImg${i}${j}`)
                 tCell.appendChild(xo);
                 tRow.appendChild(tCell);
             };
@@ -177,6 +177,7 @@ function Game(gameboard, players, dom) {
 
         if ( targetCell !== 0) {
             console.log("This cell has already been tagged! Please choose a different cell.");
+            alert("This cell has already been tagged! Please choose a different cell.");
             startNewRound();
             return;
         };
@@ -209,8 +210,8 @@ const boardContainer = document.querySelector('.game-board')
 boardContainer.addEventListener('click', (event) => {
     let target = event.target;
     let targetID = target.classList[0];
-    let targetRow = targetID.charAt(0);
-    let targetColumn = targetID.charAt(1);
+    let targetRow = targetID.charAt(4);
+    let targetColumn = targetID.charAt(5);
 
     game.move(targetRow, targetColumn);
 })
