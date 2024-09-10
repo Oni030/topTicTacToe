@@ -189,6 +189,7 @@ function Game(gameboard, players, dom) {
     const startNewRound = () => {
         gameboard.printBoard();
         console.log(`${players.getActivePlayer().name}'s turn.`);
+        infoDisplay.textContent = `${players.getActivePlayer().name}'s turn.`;
     };
 
     //  Method to call tagCell if the cell is not tagged already. Calls checkWin().
@@ -226,8 +227,8 @@ function startNewGame() {
 /* INPUT PLAYER NAMES FUNCTION */
 /*******************************/
 function inputPlayerNames() {
-    const playerOneInput = window.prompt('Choose a name for Player 1!');
-    const playerTwoInput = window.prompt('Choose a name for Player 2!');
+    const playerOneInput = window.prompt('Choose a name for Player 1');
+    const playerTwoInput = window.prompt('Choose a name for Player 2');
     players = Players(playerOneInput, playerTwoInput);
     game = Game(gameboard, players, dom);
 };
@@ -244,6 +245,7 @@ const boardContainer = document.querySelector('.game-board');
 const playButton = document.querySelector('.play');
 const startScreen = document.querySelector('.start-screen');
 const gameScreen = document.querySelector('.game-screen');
+const infoDisplay = document.querySelector('.info-display');
 
 
 /******************/
@@ -254,6 +256,7 @@ playButton.addEventListener('click', (event) => {
     gameScreen.style.display = 'flex';
     dom.displayBoard();
     inputPlayerNames();
+    startNewGame();
 });
 
 boardContainer.addEventListener('click', (event) => {
