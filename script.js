@@ -169,7 +169,11 @@ function Game(gameboard, players, dom) {
 
         if (rows.flat().every(cell => cell !== 0)) {
             console.log("It's a draw!");
-            return true;
+            infoDisplay.textContent = "It's a draw!";
+            const prompt = window.confirm("It's a draw! Do you want to restart?");
+            if ( prompt === true ) {
+                return startNewGame();
+            };
         };
 
         for (const combo of checkBoard) {
@@ -177,7 +181,11 @@ function Game(gameboard, players, dom) {
             if (combo[0] !== 0 && combo[0] === combo[1] && combo[0] === combo[2]) {
                 const winningPlayer = playerList[tagID - 1];
                 console.log(`${winningPlayer.name} wins!`);
-                return true
+                infoDisplay.textContent = `${winningPlayer.name} wins!`;
+                const prompt = window.confirm(`${winningPlayer.name} wins! Do you want to restart?`);
+                if ( prompt === true ) {
+                    return startNewGame();
+                };
             };
         };
 
