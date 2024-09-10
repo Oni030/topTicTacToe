@@ -53,10 +53,10 @@ function Gameboard() {
 /* PLAYERS FUNCTION FACTORY */
 /****************************/
 function Players( playerOne, playerTwo ) {
-    if (playerOne === null) {
+    if (playerOne === null || playerOne === "") {
         playerOne = "Player 1";
     };
-    if (playerTwo === null) {
+    if (playerTwo === null || playerTwo === "") {
         playerTwo = "Player 2"
     };
     const playerOneDisplay = document.querySelector('.one');
