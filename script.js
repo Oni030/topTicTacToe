@@ -174,6 +174,10 @@ function Game(gameboard, players, dom) {
                 const prompt = window.confirm("It's a draw! Do you want to restart?");
                 if ( prompt === true ) {
                     return startNewGame();
+                } else {
+                    gameScreen.style.display = 'none';
+                    startScreen.style.display = 'flex';
+                    return;
                 };
             }, 100)
         };
@@ -188,6 +192,10 @@ function Game(gameboard, players, dom) {
                     const prompt = window.confirm(`${winningPlayer.name} wins! Do you want to restart?`);
                     if ( prompt === true ) {
                         return startNewGame();
+                    } else {
+                        gameScreen.style.display = 'none';
+                        startScreen.style.display = 'flex';
+                        return;
                     };
                 }, 100);
                 
