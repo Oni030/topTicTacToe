@@ -240,13 +240,18 @@ const gameboard = Gameboard();
 const dom = DOM(gameboard);
 let players = '';
 let game = '';
-const boardContainer = document.querySelector('.game-board')
+const boardContainer = document.querySelector('.game-board');
+const playButton = document.querySelector('.play');
+const startScreen = document.querySelector('.start-screen');
+const gameScreen = document.querySelector('.game-screen');
 
 
 /******************/
 /* EVENTLISTENERS */
 /******************/
-document.addEventListener('DOMContentLoaded', (event) => {
+playButton.addEventListener('click', (event) => {
+    startScreen.style.display = 'none';
+    gameScreen.style.display = 'flex';
     dom.displayBoard();
     inputPlayerNames();
 });
