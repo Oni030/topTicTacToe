@@ -54,10 +54,10 @@ function Gameboard() {
 /****************************/
 function Players( playerOne, playerTwo ) {
     if (playerOne === null) {
-        playerOne = "";
+        playerOne = "Player 1";
     };
     if (playerTwo === null) {
-        playerTwo = ""
+        playerTwo = "Player 2"
     };
     const playerOneDisplay = document.querySelector('.one');
     const playerTwoDisplay = document.querySelector('.two');
@@ -170,10 +170,12 @@ function Game(gameboard, players, dom) {
         if (rows.flat().every(cell => cell !== 0)) {
             console.log("It's a draw!");
             infoDisplay.textContent = "It's a draw!";
-            const prompt = window.confirm("It's a draw! Do you want to restart?");
-            if ( prompt === true ) {
-                return startNewGame();
-            };
+            setTimeout(() => {
+                const prompt = window.confirm("It's a draw! Do you want to restart?");
+                if ( prompt === true ) {
+                    return startNewGame();
+                };
+            }, 100)
         };
 
         for (const combo of checkBoard) {
@@ -182,10 +184,13 @@ function Game(gameboard, players, dom) {
                 const winningPlayer = playerList[tagID - 1];
                 console.log(`${winningPlayer.name} wins!`);
                 infoDisplay.textContent = `${winningPlayer.name} wins!`;
-                const prompt = window.confirm(`${winningPlayer.name} wins! Do you want to restart?`);
-                if ( prompt === true ) {
-                    return startNewGame();
-                };
+                setTimeout(() => {
+                    const prompt = window.confirm(`${winningPlayer.name} wins! Do you want to restart?`);
+                    if ( prompt === true ) {
+                        return startNewGame();
+                    };
+                }, 100);
+                
             };
         };
 
