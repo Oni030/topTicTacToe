@@ -44,6 +44,7 @@ p, h1, h2, h3, h4, h5, h6 {
 :root {
     --main: #0a1429;
     --text: #f0f1f5;
+    font-family: 'Rubik', sans-serif;
 }
 
 body {
@@ -63,6 +64,28 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+h1 {
+    position: absolute;
+    top: 15rem;
+    font-size: 7rem;
+    font-weight: bold;
+}
+
+h1:hover {
+    cursor: default;
+}
+
+img.play {
+    width: 15%;
+    transition: width 0.2s;
+}
+
+img.play:hover {
+    cursor: pointer;
+    width: 17%;
+    transition: width 0.2s;
 }
 
 .game-screen {
